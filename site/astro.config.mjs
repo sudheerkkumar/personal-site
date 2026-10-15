@@ -1,9 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import { site } from './src/site.config.ts';
 
 export default defineConfig({
   // Absolute base URL. Used for canonical URLs, Open Graph URLs and the sitemap.
-  site: 'https://sudheerkancharla.dev',
+  site: site.url,
   // Plain static files only, no server runtime. This is Astro's default; stated explicitly.
   output: 'static',
   // Pages are emitted as /path/index.html and linked as /path/.
