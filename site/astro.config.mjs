@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
 import { site } from './src/site.config.ts';
 
 export default defineConfig({
@@ -11,4 +12,6 @@ export default defineConfig({
   // CloudFront needs an index-rewrite function for this (see infra/README.md).
   trailingSlash: 'always',
   build: { format: 'directory' },
+  // Writes sitemap-index.xml + sitemap-0.xml listing every built page.
+  integrations: [sitemap()],
 });
