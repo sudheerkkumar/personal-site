@@ -1,0 +1,75 @@
+---
+// A bordered card used by Case Studies and Projects.
+// If `href` is set, the title links there and the whole card is clickable.
+import Tags from './Tags.astro';
+
+interface Props {
+  title: string;
+  href?: string;
+  description: string;
+  tags?: readonly string[];
+  badge?: string;
+}
+const { title, href, description, tags = [], badge } = Astro.props;
+---
+
+<article class:list={['card', { linked: Boolean(href) }]}>
+  <h3>
+    {href ? <a href={href}>{title}</a> : title}
+    {badge && <span class="badge">{badge}</span>}
+  </h3>
+  <p>{description}</p>
+  <Tags items={tags} />
+  <slot />
+</article>
+
+<style>
+  .card {
+    position: relative;
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+  }
+
+  .linked:hover {
+    border-color: var(--color-accent);
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+  }
+
+  h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  /* Stretch the title link over the whole card so the card is one click target,
+     while screen readers still announce only the title as the link. */
+  .linked h3 a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .linked:hover h3 a {
+    color: var(--color-accent);
+  }
+
+  p {
+    margin-top: var(--space-2);
+    color: var(--color-muted);
+  }
+
+  .badge {
+    margin-left: var(--space-2);
+    padding: 0.1rem 0.5rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    vertical-align: middle;
+    color: var(--color-bg);
+    background: var(--color-muted);
+    border-radius: 999px;
+  }
+</style>

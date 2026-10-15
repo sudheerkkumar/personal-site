@@ -1,0 +1,44 @@
+---
+import { getProjects } from '../lib/content';
+import Card from './Card.astro';
+import Section from './Section.astro';
+
+const projects = await getProjects();
+---
+
+<Section id="projects" title="Projects">
+  <div class="grid">
+    {
+      projects.map(({ data }) => (
+        <Card title={data.title} description={data.description} tags={data.tech}>
+          {data.links.length > 0 && (
+            <ul class="links">
+              {data.links.map((link) => (
+                <li>
+                  <a href={link.href}>{link.label}</a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </Card>
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-3);
+    padding: 0;
+    list-style: none;
+    font-weight: 600;
+  }
+</style>

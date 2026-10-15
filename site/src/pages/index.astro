@@ -1,7 +1,75 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ThemeToggle from '../components/ThemeToggle.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
+import Skills from '../components/Skills.astro';
+import CaseStudies from '../components/CaseStudies.astro';
+import Projects from '../components/Projects.astro';
+import Contact from '../components/Contact.astro';
+import { site } from '../site.config';
+import { getVisibleCaseStudies } from '../lib/content';
+
+const caseStudies = await getVisibleCaseStudies();
+const hasCaseStudies = caseStudies.length > 0;
+
+// Nav entries mirror the sections below. Case Studies is dropped when there are none,
+// so the nav never points at a section that isn't rendered.
+const sections = [
+  { id: 'about', label: 'About' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Skills' },
+  ...(hasCaseStudies ? [{ id: 'case-studies', label: 'Case Studies' }] : []),
+  { id: 'projects', label: 'Projects' },
+  { id: 'contact', label: 'Contact' },
+];
 ---
+
 <BaseLayout>
-  <main id="main"><h1>Hello</h1><ThemeToggle /></main>
+  <div class="layout">
+    <Hero sections={sections} />
+    <main id="main" tabindex="-1">
+      <About />
+      <Experience />
+      <Skills />
+      {hasCaseStudies && <CaseStudies entries={caseStudies} />}
+      <Projects />
+      <Contact />
+      <footer>
+        <p>© {new Date().getFullYear()} {site.name}. Built with Astro, hosted as static files.</p>
+      </footer>
+    </main>
+  </div>
 </BaseLayout>
+
+<style>
+  .layout {
+    max-width: var(--max-width);
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+  }
+
+  /* Two columns on wide screens: sticky header on the left, content on the right. */
+  @media (min-width: 64rem) {
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: var(--space-6);
+      padding-inline: var(--space-5);
+    }
+
+    main {
+      padding-block: var(--space-5);
+    }
+  }
+
+  main:focus {
+    outline: none;
+  }
+
+  footer {
+    padding-block: var(--space-5);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+</style>

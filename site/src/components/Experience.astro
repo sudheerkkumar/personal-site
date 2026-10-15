@@ -1,0 +1,68 @@
+---
+import { render } from 'astro:content';
+import { getExperience } from '../lib/content';
+import Section from './Section.astro';
+import Tags from './Tags.astro';
+
+const entries = await getExperience();
+// render() turns each entry's Markdown body into a component we can place in the page.
+const items = await Promise.all(
+  entries.map(async (entry) => ({ data: entry.data, Content: (await render(entry)).Content })),
+);
+---
+
+<Section id="experience" title="Experience">
+  <ol class="timeline">
+    {
+      items.map(({ data, Content }) => (
+        <li>
+          <p class="period">{data.period}</p>
+          <div>
+            <h3>
+              {data.role} ·{' '}
+              {data.companyUrl ? <a href={data.companyUrl}>{data.company}</a> : data.company}
+            </h3>
+            <div class="summary">
+              <Content />
+            </div>
+            <Tags items={data.tags} />
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</Section>
+
+<style>
+  .timeline {
+    display: grid;
+    gap: var(--space-5);
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Period above the role on mobile, in its own column on wider screens. */
+  @media (min-width: 40rem) {
+    li {
+      display: grid;
+      grid-template-columns: 9rem 1fr;
+      gap: var(--space-4);
+    }
+  }
+
+  .period {
+    padding-top: 0.15rem;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+  }
+
+  .summary {
+    margin-top: var(--space-2);
+    color: var(--color-muted);
+  }
+</style>

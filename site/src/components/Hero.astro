@@ -1,0 +1,96 @@
+---
+// Page header: name, title, positioning statement, location, section nav, links.
+// On wide screens this column stays fixed (sticky) while the content scrolls.
+import { site } from '../site.config';
+import SectionNav from './SectionNav.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  sections: { id: string; label: string }[];
+}
+const { sections } = Astro.props;
+---
+
+<header class="hero">
+  <div>
+    <h1>{site.name}</h1>
+    <p class="title">{site.title}</p>
+    <p class="tagline">{site.tagline}</p>
+    <p class="location">{site.location}</p>
+    <SectionNav sections={sections} />
+  </div>
+
+  <div class="footer-row">
+    <ul class="links" aria-label="Profiles and contact">
+      <li><a href={site.links.linkedin} rel="me noopener">LinkedIn</a></li>
+      <li><a href={site.links.github} rel="me noopener">GitHub</a></li>
+      <li><a href={`mailto:${site.email}`}>Email</a></li>
+      <li><a href={site.links.cv}>CV <span class="visually-hidden">(PDF)</span></a></li>
+    </ul>
+    <ThemeToggle />
+  </div>
+</header>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-5);
+    padding-block: var(--space-6) var(--space-4);
+  }
+
+  @media (min-width: 64rem) {
+    .hero {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding-block: var(--space-6);
+    }
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    letter-spacing: -0.02em;
+  }
+
+  .title {
+    margin-top: var(--space-2);
+    font-size: var(--text-lg);
+    font-weight: 600;
+  }
+
+  .tagline {
+    max-width: 24rem;
+    margin-top: var(--space-3);
+    color: var(--color-muted);
+  }
+
+  .location {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+  }
+
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    padding: 0;
+    list-style: none;
+  }
+
+  .links a {
+    /* Comfortable tap target on mobile (at least 24px tall). */
+    display: inline-block;
+    padding-block: var(--space-1);
+    font-weight: 600;
+  }
+</style>

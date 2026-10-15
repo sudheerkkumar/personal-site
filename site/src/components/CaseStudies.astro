@@ -1,0 +1,33 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Card from './Card.astro';
+import Section from './Section.astro';
+
+interface Props {
+  entries: CollectionEntry<'caseStudies'>[];
+}
+const { entries } = Astro.props;
+---
+
+<Section id="case-studies" title="Case Studies">
+  <div class="grid">
+    {
+      entries.map((entry) => (
+        <Card
+          title={entry.data.title}
+          href={`/case-studies/${entry.id}/`}
+          description={entry.data.summary}
+          tags={entry.data.tags}
+          badge={entry.data.draft ? 'Draft' : undefined}
+        />
+      ))
+    }
+  </div>
+</Section>
+
+<style>
+  .grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+</style>

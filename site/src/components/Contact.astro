@@ -1,0 +1,30 @@
+---
+import { site } from '../site.config';
+import Section from './Section.astro';
+---
+
+<Section id="contact" title="Contact">
+  <div class="prose">
+    <p>
+      I'm open to conversations about senior and architect-level backend roles,
+      distributed systems and cloud architecture. The best way to reach me is by email or
+      LinkedIn.
+    </p>
+    <ul class="links">
+      <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+      <li><a href={site.links.linkedin} rel="me noopener">LinkedIn</a></li>
+    </ul>
+  </div>
+</Section>
+
+<style>
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    margin-top: var(--space-3);
+    padding: 0;
+    list-style: none;
+    font-weight: 600;
+  }
+</style>

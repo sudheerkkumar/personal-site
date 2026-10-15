@@ -1,0 +1,40 @@
+---
+import { skills } from '../data/skills';
+import Section from './Section.astro';
+import Tags from './Tags.astro';
+---
+
+<Section id="skills" title="Skills">
+  <dl class="skills">
+    {
+      skills.map(({ category, items }) => (
+        <div>
+          <dt>{category}</dt>
+          <dd>
+            <Tags items={items} label={category} />
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</Section>
+
+<style>
+  .skills {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  dt {
+    font-weight: 700;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  /* Tags.astro adds a top margin meant for cards; tighten it here. */
+  dd :global(.tags) {
+    margin-top: var(--space-2);
+  }
+</style>
