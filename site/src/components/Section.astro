@@ -1,6 +1,8 @@
 ---
 // Wrapper for a home page section: gives it an id (nav anchor target) and
 // labels it with its heading for screen readers.
+// On wide screens the heading is visually hidden: the sticky nav already names each
+// section, and hiding it lets the first section line up with the name in the header.
 interface Props {
   id: string;
   title: string;
@@ -15,9 +17,8 @@ const { id, title } = Astro.props;
 
 <style>
   section {
-    padding-block: var(--space-5);
-    /* Leave room above the heading when jumping to an anchor. */
-    scroll-margin-top: var(--space-4);
+    margin-bottom: var(--space-6);
+    scroll-margin-top: var(--space-5);
   }
 
   h2 {
@@ -26,6 +27,23 @@ const { id, title } = Astro.props;
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-muted);
+    color: var(--color-text);
+  }
+
+  @media (min-width: 64rem) {
+    section {
+      margin-bottom: 6rem;
+      scroll-margin-top: 6rem;
+    }
+
+    /* Same technique as the global .visually-hidden utility. */
+    h2 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
   }
 </style>

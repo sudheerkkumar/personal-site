@@ -20,7 +20,14 @@ const items = await Promise.all(
           <div>
             <h3>
               {data.role} ·{' '}
-              {data.companyUrl ? <a href={data.companyUrl}>{data.company}</a> : data.company}
+              {data.companyUrl ? (
+                <a href={data.companyUrl}>
+                  {data.company}
+                  <span aria-hidden="true"> ↗</span>
+                </a>
+              ) : (
+                data.company
+              )}
             </h3>
             <div class="summary">
               <Content />
@@ -41,28 +48,45 @@ const items = await Promise.all(
     list-style: none;
   }
 
-  /* Period above the role on mobile, in its own column on wider screens. */
+  /* Date in a narrow label column on wider screens, above the role on mobile.
+     Skills uses the same 1fr/3fr grid so both sections share one left edge. */
   @media (min-width: 40rem) {
     li {
       display: grid;
-      grid-template-columns: 9rem 1fr;
-      gap: var(--space-4);
+      grid-template-columns: 1fr 3fr;
+      gap: var(--space-3);
     }
   }
 
   .period {
+    margin-bottom: var(--space-1);
     padding-top: 0.15rem;
-    font-size: var(--text-sm);
+    font-size: var(--text-xs);
     font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
     color: var(--color-muted);
   }
 
   h3 {
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  h3 a:hover,
+  h3 a:focus-visible {
+    color: var(--color-accent);
   }
 
   .summary {
     margin-top: var(--space-2);
+    font-size: var(--text-sm);
     color: var(--color-muted);
   }
 </style>

@@ -49,17 +49,24 @@ const sections = [
     padding-inline: var(--space-4);
   }
 
-  /* Two columns on wide screens: sticky header on the left, content on the right. */
+  @media (min-width: 40rem) {
+    .layout {
+      padding-inline: var(--space-6);
+    }
+  }
+
+  /* Two columns on wide screens: sticky header on the left, content on the right.
+     Both columns start 6rem from the top so the name and the About text line up. */
   @media (min-width: 64rem) {
     .layout {
       display: grid;
-      grid-template-columns: 1fr 1.25fr;
-      gap: var(--space-6);
+      grid-template-columns: 1fr 1.1fr;
+      gap: var(--space-5);
       padding-inline: var(--space-5);
     }
 
     main {
-      padding-block: var(--space-5);
+      padding-block: 6rem;
     }
   }
 
@@ -68,7 +75,8 @@ const sections = [
   }
 
   footer {
-    padding-block: var(--space-5);
+    max-width: 28rem;
+    padding-bottom: var(--space-5);
     font-size: var(--text-sm);
     color: var(--color-muted);
   }

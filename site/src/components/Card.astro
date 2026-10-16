@@ -27,17 +27,20 @@ const { title, href, description, tags = [], badge } = Astro.props;
   .card {
     position: relative;
     padding: var(--space-4);
-    background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
+    transition: background-color 150ms ease, border-color 150ms ease;
   }
 
   .linked:hover {
+    background: var(--color-surface);
     border-color: var(--color-accent);
   }
 
   h3 {
-    font-size: var(--text-lg);
+    font-size: var(--text-base);
+    font-weight: 500;
+    line-height: 1.4;
   }
 
   h3 a {
@@ -59,17 +62,24 @@ const { title, href, description, tags = [], badge } = Astro.props;
 
   p {
     margin-top: var(--space-2);
+    font-size: var(--text-sm);
     color: var(--color-muted);
   }
 
   .badge {
     margin-left: var(--space-2);
     padding: 0.1rem 0.5rem;
-    font-size: var(--text-sm);
+    font-size: var(--text-xs);
     font-weight: 600;
     vertical-align: middle;
     color: var(--color-bg);
     background: var(--color-muted);
     border-radius: 999px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
   }
 </style>
