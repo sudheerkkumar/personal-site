@@ -30,7 +30,8 @@ observability and system design docs.
 - Astro, static output only (no SSR adapter), TypeScript strict.
 - Plain CSS with custom properties in `site/src/styles/global.css`. No Tailwind, no UI
   framework, no React.
-- Near-zero client JS: only the inline theme-toggle script.
+- Near-zero client JS: only two small inline scripts, the theme toggle and the cursor
+  spotlight (mouse/trackpad only, disabled for reduced motion). Ask before adding more.
 - Content via Astro content collections (`site/src/content.config.ts`).
 
 ## Layout

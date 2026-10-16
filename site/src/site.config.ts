@@ -2,7 +2,7 @@
 // astro.config.mjs imports `site.url` from here too.
 
 export const site = {
-  name: 'Sudheer Kancharla',
+  name: 'Sudheer Kumar Kancharla',
   title: 'Senior Backend Engineer · Tech Lead',
   // One-line positioning statement shown in the hero.
   tagline:
@@ -23,9 +23,9 @@ export const site = {
   seo: {
     // Default meta description; pages can override it.
     description:
-      'Sudheer Kancharla, Senior Backend Engineer and Tech Lead in Seville, Spain. 10+ years building distributed systems in Kotlin and Java on AWS.',
+      'Sudheer Kumar Kancharla, Senior Backend Engineer and Tech Lead in Seville, Spain. 10+ years building distributed systems in Kotlin and Java on AWS.',
     // Default social preview image (1200x630), relative to the site root.
     ogImage: '/og-image.png',
-    ogImageAlt: 'Sudheer Kancharla, Senior Backend Engineer and Tech Lead',
+    ogImageAlt: 'Sudheer Kumar Kancharla, Senior Backend Engineer and Tech Lead',
   },
 } as const;

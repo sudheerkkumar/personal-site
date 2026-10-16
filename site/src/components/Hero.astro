@@ -4,6 +4,7 @@
 import { Image } from 'astro:assets';
 import { site } from '../site.config';
 import profilePhoto from '../assets/profile.jpg';
+import Icon from './Icon.astro';
 import SectionNav from './SectionNav.astro';
 import ThemeToggle from './ThemeToggle.astro';
 
@@ -11,6 +12,13 @@ interface Props {
   sections: { id: string; label: string }[];
 }
 const { sections } = Astro.props;
+
+const links = [
+  { label: 'LinkedIn', href: site.links.linkedin, icon: 'linkedin', rel: 'me noopener' },
+  { label: 'GitHub', href: site.links.github, icon: 'github', rel: 'me noopener' },
+  { label: 'Email', href: `mailto:${site.email}`, icon: 'mail' },
+  { label: 'CV (PDF)', href: site.links.cv, icon: 'file' },
+] as const;
 ---
 
 <header class="hero">
@@ -38,10 +46,18 @@ const { sections } = Astro.props;
 
   <div class="footer-row">
     <ul class="links" aria-label="Profiles and contact">
-      <li><a href={site.links.linkedin} rel="me noopener">LinkedIn</a></li>
-      <li><a href={site.links.github} rel="me noopener">GitHub</a></li>
-      <li><a href={`mailto:${site.email}`}>Email</a></li>
-      <li><a href={site.links.cv}>CV <span class="visually-hidden">(PDF)</span></a></li>
+      {
+        links.map((link) => (
+          <li>
+            {/* Icon only visually; the hidden label is what screen readers announce,
+                and `title` gives mouse users a tooltip. */}
+            <a href={link.href} rel={'rel' in link ? link.rel : undefined} title={link.label}>
+              <Icon name={link.icon} />
+              <span class="visually-hidden">{link.label}</span>
+            </a>
+          </li>
+        ))
+      }
     </ul>
     <ThemeToggle />
   </div>
@@ -95,6 +111,15 @@ const { sections } = Astro.props;
     letter-spacing: -0.025em;
   }
 
+  /* In the two-column layout, scale the name with the window so the full name stays
+     on one line; a wrapped name would make the sticky column taller than the screen. */
+  @media (min-width: 64rem) {
+    h1 {
+      font-size: clamp(2rem, 3.2vw, 3rem);
+      white-space: nowrap;
+    }
+  }
+
   .title {
     margin-top: var(--space-3);
     font-size: var(--text-xl);
@@ -124,19 +149,20 @@ const { sections } = Astro.props;
   .links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-2) var(--space-4);
+    gap: var(--space-2);
     padding: 0;
     list-style: none;
   }
 
   .links a {
-    /* Comfortable tap target on mobile (at least 24px tall). */
-    display: inline-block;
-    padding-block: var(--space-1);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    text-decoration: none;
+    /* 40px square: a comfortable tap target around a 22px icon. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
     color: var(--color-muted);
+    transition: color 150ms ease;
   }
 
   .links a:hover,

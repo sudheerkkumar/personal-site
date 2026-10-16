@@ -3,6 +3,7 @@
 // bootstrap script, global CSS, and a skip link for keyboard users.
 import '../styles/global.css';
 import { site } from '../site.config';
+import Spotlight from '../components/Spotlight.astro';
 
 interface Props {
   /** Page-specific title. Omit on the home page to use "Name · Title". */
@@ -74,6 +75,7 @@ const ogImageUrl = new URL(ogImage, Astro.site).href;
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <Spotlight />
     <slot />
   </body>
 </html>
