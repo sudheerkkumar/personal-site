@@ -1,7 +1,9 @@
 ---
 // Page header: name, title, positioning statement, location, section nav, links.
 // On wide screens this column stays fixed (sticky) while the content scrolls.
+import { Image } from 'astro:assets';
 import { site } from '../site.config';
+import profilePhoto from '../assets/profile.jpg';
 import SectionNav from './SectionNav.astro';
 import ThemeToggle from './ThemeToggle.astro';
 
@@ -13,6 +15,20 @@ const { sections } = Astro.props;
 
 <header class="hero">
   <div>
+    <!--
+      Astro's <Image> resizes the photo at build time (via sharp, bundled with Astro),
+      converts it to WebP and emits 1x/2x versions. Eager-loaded: it is above the fold.
+    -->
+    <Image
+      src={profilePhoto}
+      alt={`Portrait of ${site.name}`}
+      width={128}
+      height={128}
+      densities={[1, 2]}
+      loading="eager"
+      fetchpriority="high"
+      class="photo"
+    />
     <h1>{site.name}</h1>
     <p class="title">{site.title}</p>
     <p class="tagline">{site.tagline}</p>
@@ -42,10 +58,35 @@ const { sections } = Astro.props;
 
   @media (min-width: 64rem) {
     .hero {
+      /* Don't stretch to the height of the content column (the grid default). */
+      align-self: start;
+      padding-block: 5rem var(--space-4);
+    }
+  }
+
+  /* Sticky full-height column only when the window is tall enough to show all of it;
+     otherwise the bottom links would be cut off and unreachable. Shorter windows get a
+     normally scrolling column instead. */
+  @media (min-width: 64rem) and (min-height: 48rem) {
+    .hero {
       position: sticky;
       top: 0;
       height: 100vh;
-      padding-block: 6rem;
+    }
+  }
+
+  .photo {
+    width: 6rem;
+    height: 6rem;
+    margin-bottom: var(--space-4);
+    border: 2px solid var(--color-border);
+    border-radius: 50%;
+  }
+
+  @media (min-width: 64rem) {
+    .photo {
+      width: 7rem;
+      height: 7rem;
     }
   }
 
