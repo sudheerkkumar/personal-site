@@ -1,12 +1,13 @@
 ---
-role: Senior Software Engineer
+role: Senior Engineer II (Technical Lead)
 company: Monta
 companyUrl: https://monta.com
-period: TODO
+period: 2024 – Present
 order: 1
-tags: [Kotlin, Java, Microservices, AWS, Kubernetes]
+tags: [Kotlin, Java, Micronaut, Kafka, AWS, PostgreSQL, Redis, Kubernetes, Grafana, OpenAI]
 ---
 
-Placeholder: building backend services for an EV charging platform. Leading a team of
-around six engineers. Replace with two or three impact-focused sentences (what you
-changed, for whom, and the measurable result).
+Lead a team of six backend engineers on the core platform behind Monta's EV charging
+ecosystem across Europe and the US. Built and own the company-wide feature flag service
+(RBAC, A/B experiments, gradual rollouts), and built an event-driven CDR reconciliation
+service from scratch with AI-assisted invoice parsing.

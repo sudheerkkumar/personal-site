@@ -4,7 +4,7 @@ Context and conventions for Claude Code sessions in this repo.
 
 ## Project
 
-Personal portfolio site for Sudheer Kancharla (Senior Software Engineer, backend &
+Personal portfolio site for Sudheer Kancharla (Senior Backend Engineer & Tech Lead,
 distributed systems, Seville). Domain:
 `sudheerkancharla.dev`.
 

@@ -3,21 +3,19 @@
 
 export const site = {
   name: 'Sudheer Kancharla',
-  title: 'Senior Software Engineer · Backend & Distributed Systems',
+  title: 'Senior Backend Engineer · Tech Lead',
   // One-line positioning statement shown in the hero.
   tagline:
-    'I design and build reliable, scalable backend systems, and I help teams make sound architecture decisions.',
+    'I design, build and run reliable distributed backend systems, and lead the teams that build them.',
   location: 'Seville, Spain',
 
   url: 'https://sudheerkancharla.dev',
   locale: 'en',
 
-  // TODO: replace with your real public email address.
-  email: 'you@example.com',
+  email: 'sudheer.k.kancharla@gmail.com',
 
   links: {
-    // TODO: replace with your LinkedIn profile URL.
-    linkedin: 'https://www.linkedin.com/in/TODO/',
+    linkedin: 'https://www.linkedin.com/in/sudheerkumark/',
     github: 'https://github.com/sudheerkkumar',
     cv: '/cv.pdf',
   },
@@ -25,9 +23,9 @@ export const site = {
   seo: {
     // Default meta description; pages can override it.
     description:
-      'Sudheer Kancharla, Senior Software Engineer in Seville, Spain, focused on backend, distributed systems, cloud architecture and system design.',
+      'Sudheer Kancharla, Senior Backend Engineer and Tech Lead in Seville, Spain. 10+ years building distributed systems in Kotlin and Java on AWS.',
     // Default social preview image (1200x630), relative to the site root.
     ogImage: '/og-image.png',
-    ogImageAlt: 'Sudheer Kancharla, Senior Software Engineer',
+    ogImageAlt: 'Sudheer Kancharla, Senior Backend Engineer and Tech Lead',
   },
 } as const;

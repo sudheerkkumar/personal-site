@@ -1,11 +1,13 @@
 ---
-role: Software Engineer # TODO: confirm job title
+role: Senior Software Engineer
 company: Solera (Qapter)
 companyUrl: https://www.solera.com
-period: TODO
+period: 2023 – 2024
 order: 2
-tags: [Java, Spring Boot, MongoDB, RabbitMQ, Elasticsearch]
+tags: [Java 17, Spring Boot, Spring Cloud, Kafka, RabbitMQ, MongoDB, Elasticsearch, Kubernetes]
 ---
 
-Placeholder: worked on Qapter, an AI-driven vehicle lifecycle management platform.
-Replace with two or three impact-focused sentences (what you built, scale, outcome).
+Led a team of engineers building backend microservices in Java 17 and Spring Boot for
+Qapter FMS, a global AI-driven vehicle lifecycle and claims platform supporting
+mission-critical insurance operations. Built event-driven messaging with Kafka and RabbitMQ
+between services, and load-tested REST APIs with JMeter to validate SLAs.

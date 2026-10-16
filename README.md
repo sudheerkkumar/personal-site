@@ -1,7 +1,7 @@
 # personal-site
 
 Source for [sudheerkancharla.dev](https://sudheerkancharla.dev): the personal portfolio
-of Sudheer Kancharla, Senior Software Engineer (backend & distributed systems).
+of Sudheer Kancharla, Senior Backend Engineer and Tech Lead.
 
 It is also a learning project: the site is deliberately simple so the interesting work
 happens in infrastructure, IaC, CI/CD and documentation.
