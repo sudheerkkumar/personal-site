@@ -3,22 +3,40 @@
   Component-specific styles live in each component's scoped <style> block.
 */
 
+/* ---------- Font ---------- */
+
+/*
+  Plus Jakarta Sans (SIL Open Font License 1.1, see /fonts/OFL.txt), self-hosted so
+  visitors make no third-party requests. One variable file covers all weights (200-800);
+  Latin subset only (~27 KB), from @fontsource-variable/plus-jakarta-sans@5.3.0.
+  `swap` shows text in the fallback font immediately, then swaps when the font arrives.
+*/
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 /* ---------- Design tokens ---------- */
 
 /* Dark theme is the default. */
 :root {
   color-scheme: dark;
 
-  --color-bg: #111315;
-  --color-surface: #1a1d21;
-  --color-border: #2b3036;
-  --color-text: #e7e9ec;
-  --color-muted: #a3a9b1; /* ~8:1 on --color-bg */
-  --color-accent: #f0a35e; /* ~9:1 on --color-bg */
-  --color-accent-soft: rgb(240 163 94 / 0.12);
-  --color-spotlight: rgb(240 163 94 / 0.07);
+  --color-bg: #0d1525; /* deep navy */
+  --color-surface: #15203a;
+  --color-border: #1f2b45;
+  --color-text: #e2e8f0;
+  --color-muted: #94a3b8;
+  --color-accent: #5eead4; /* mint/teal */
+  --color-accent-soft: rgb(45 212 191 / 0.1);
+  --color-spotlight: rgb(37 99 235 / 0.12); /* blue glow */
 
-  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --text-xs: 0.75rem;
@@ -44,14 +62,14 @@
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --color-bg: #fafaf9;
-  --color-surface: #ffffff;
-  --color-border: #e2e4e7;
-  --color-text: #1c1f23;
-  --color-muted: #505862; /* ~7:1 on --color-bg */
-  --color-accent: #9a4d0b; /* ~5.8:1 on --color-bg */
-  --color-accent-soft: rgb(154 77 11 / 0.08);
-  --color-spotlight: rgb(154 77 11 / 0.06);
+  --color-bg: #f8fafc;
+  --color-surface: #eef2f7;
+  --color-border: #e2e8f0;
+  --color-text: #0f172a;
+  --color-muted: #475569;
+  --color-accent: #115e59; /* dark teal */
+  --color-accent-soft: rgb(17 94 89 / 0.08);
+  --color-spotlight: rgb(37 99 235 / 0.06);
 }
 
 /* ---------- Reset ---------- */

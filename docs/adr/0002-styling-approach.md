@@ -22,6 +22,11 @@ Use **plain CSS** with **custom properties** for design tokens (colours, spacing
 sizes). They're defined once in `site/src/styles/global.css`. Component-specific rules
 live in each `.astro` component's scoped `<style>` block.
 
+Font: **Plus Jakarta Sans**, self-hosted as a single variable WOFF2 file (Latin subset,
+~27 KB, SIL Open Font License) and preloaded. It was chosen by comparing candidates on the
+real page. Self-hosting avoids third-party requests (privacy, GDPR) and an extra DNS/TLS
+connection.
+
 Theming: dark is the default. A `data-theme="light"` attribute on `<html>` swaps the
 colour variables. A tiny inline script sets the attribute from `localStorage` before
 first paint to avoid a flash of the wrong theme.

@@ -15,7 +15,7 @@ const items = await Promise.all(
   <ol class="timeline">
     {
       items.map(({ data, Content }) => (
-        <li>
+        <li class="entry">
           <p class="period">{data.period}</p>
           <div>
             <h3>
@@ -23,7 +23,7 @@ const items = await Promise.all(
               {data.companyUrl ? (
                 <a href={data.companyUrl}>
                   {data.company}
-                  <span aria-hidden="true"> ↗</span>
+                  <span class="arrow" aria-hidden="true">↗</span>
                 </a>
               ) : (
                 data.company
@@ -46,6 +46,85 @@ const items = await Promise.all(
     gap: var(--space-5);
     padding: 0;
     list-style: none;
+  }
+
+  /*
+    Each entry is one click target. The company link is the only real link; its ::after
+    is stretched over the whole entry, so screen readers announce a single link (the
+    role/company heading) instead of the entire paragraph.
+  */
+  .entry {
+    position: relative;
+    /* Keeps the hover background (z-index: -1 below) inside this entry. */
+    isolation: isolate;
+  }
+
+  h3 a::after {
+    content: '';
+    position: absolute;
+    inset: calc(-1 * var(--space-3)) calc(-1 * var(--space-4));
+    border-radius: var(--radius);
+  }
+
+  /* The hover/focus card, drawn slightly outside the text so alignment doesn't shift. */
+  .entry::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: calc(-1 * var(--space-3)) calc(-1 * var(--space-4));
+    border-radius: var(--radius);
+    transition: background-color 150ms ease;
+  }
+
+  .entry:hover::before {
+    background: var(--color-surface);
+    box-shadow: inset 0 1px 0 0 rgb(148 163 184 / 0.1);
+  }
+
+  .entry:hover h3,
+  .entry:hover h3 a,
+  .entry:has(h3 a:focus-visible) h3,
+  h3 a:focus-visible {
+    color: var(--color-accent);
+  }
+
+  .arrow {
+    display: inline-block;
+    margin-left: 0.15rem;
+    transition: transform 150ms ease;
+  }
+
+  .entry:hover .arrow,
+  h3 a:focus-visible .arrow {
+    transform: translate(2px, -2px);
+  }
+
+  /* Keyboard focus outlines the whole entry rather than just the company name. */
+  h3 a:focus-visible {
+    outline: none;
+  }
+
+  h3 a:focus-visible::after {
+    outline: 2px solid var(--color-accent);
+  }
+
+  /* While one entry is hovered, fade the others (mouse users on wide screens only). */
+  @media (hover: hover) and (min-width: 64rem) {
+    .timeline:has(> .entry:hover) > .entry:not(:hover) {
+      opacity: 0.5;
+    }
+
+    .entry {
+      transition: opacity 150ms ease;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .entry,
+    .entry::before,
+    .arrow {
+      transition: none;
+    }
   }
 
   /* Date in a narrow label column on wider screens, above the role on mobile.
@@ -77,11 +156,6 @@ const items = await Promise.all(
   h3 a {
     color: var(--color-text);
     text-decoration: none;
-  }
-
-  h3 a:hover,
-  h3 a:focus-visible {
-    color: var(--color-accent);
   }
 
   .summary {
