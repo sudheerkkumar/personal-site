@@ -1,0 +1,5 @@
+# Terraform working files and state (state lives in S3, never in Git)
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
