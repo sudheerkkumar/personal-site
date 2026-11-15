@@ -1,5 +1,5 @@
 # Architecture
 
-Placeholder for C4 diagrams (System Context, Container) once AWS hosting lands in Phase 3.
+The hosting architecture is in the [root README](../../README.md) (diagram) and [`infra/README.md`](../../infra/README.md). C4 diagrams (System Context, Container) will follow.
 
 Architecture Decision Records live in [`../adr`](../adr).
