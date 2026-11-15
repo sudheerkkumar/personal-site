@@ -1,0 +1,3 @@
+# Copy to terraform.tfvars (gitignored)
+account_id  = "<your-account-id>"
+alert_email = "you@example.com"

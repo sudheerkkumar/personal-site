@@ -4,3 +4,6 @@
 *.tfstate.*
 crash.log
 *.tfvars
+
+# Backend settings with the real bucket name (see backend.hcl.example)
+backend.hcl

@@ -10,7 +10,7 @@ terraform {
 }
 
 locals {
-  account_id = "<account-id>"
+  account_id = var.account_id
   domain     = "sudheerkancharla.dev"
 
   tags = {

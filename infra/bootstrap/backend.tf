@@ -1,6 +1,7 @@
 terraform {
+  # The bucket name comes from ../backend.hcl (gitignored, see ../backend.hcl.example):
+  #   terraform init -backend-config=../backend.hcl
   backend "s3" {
-    bucket       = "sudheerkancharla-tfstate-<account-id>"
     key          = "bootstrap/terraform.tfstate"
     region       = "eu-north-1"
     encrypt      = true

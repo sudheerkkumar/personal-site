@@ -14,9 +14,9 @@ terraform {
 provider "aws" {
   region = "eu-north-1"
 
-  # Safety net: Terraform refuses to run against any other account.
-  # Protects against running with the wrong AWS profile.
-  allowed_account_ids = ["<account-id>"]
+  # Safety net: Terraform refuses to run against any other account,
+  # even if the wrong AWS profile is active.
+  allowed_account_ids = [var.account_id]
 
   # Every resource gets these labels automatically
   default_tags {
@@ -30,7 +30,7 @@ provider "aws" {
 
 # --- The state bucket -----------------------------------------------------
 resource "aws_s3_bucket" "tfstate" {
-  bucket = "sudheerkancharla-tfstate-<account-id>"   # must be globally unique
+  bucket = "sudheerkancharla-tfstate-${var.account_id}"   # must be globally unique
 
   lifecycle {
     prevent_destroy = true   # Terraform refuses to delete this bucket
