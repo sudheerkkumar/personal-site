@@ -5,8 +5,7 @@ Context and conventions for Claude Code sessions in this repo.
 ## Project
 
 Personal portfolio site for Sudheer Kancharla (Senior Backend Engineer & Tech Lead,
-distributed systems, Seville). Domain:
-`sudheerkancharla.dev`.
+distributed systems, Seville). Domain: `sudheerkancharla.dev`.
 
 The owner is a backend engineer. **Frontend is not the learning focus.** Keep frontend
 code minimal, readable and boring. The learning focus is AWS infra, Terraform, CI/CD,
